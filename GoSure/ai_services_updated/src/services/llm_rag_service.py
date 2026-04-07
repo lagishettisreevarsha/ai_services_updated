@@ -9,12 +9,7 @@ from src.helper.azure_openai_helper import (process_search_results, convert_to_j
 logger = logging.getLogger(__name__)
 
 
-def compliance_check(
-    content: str,
-    question: str,
-    api_version: str,
-    model: str
-) -> StructuredResponse:
+def compliance_check(content: str,question: str,api_version: str,model: str) -> StructuredResponse:
     try:
         try:
             prompt = f"""
@@ -63,12 +58,7 @@ def compliance_check(
         return StructuredResponse(answer="N/A", reason="")
 
 
-def llm_rag_pipeline(
-    search_results: List[Dict],
-    question: str,
-    token: str,
-    tenant_name: str
-) -> Dict:
+def llm_rag_pipeline(search_results: List[Dict],question: str,token: str,tenant_name: str) -> Dict:
     try:
         try:
             api_version = get_env_value(MONGO_URL,"AZURE_OPENAI_API_VERSION",tenant_name=tenant_name,token=token)
